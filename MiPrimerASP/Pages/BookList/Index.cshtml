@@ -1,5 +1,61 @@
 ﻿@page
 @model MiPrimerASP.Pages.BookList.IndexModel
 @{
-    ViewData["Title"] = "Heyeyey";
+    @*ViewData is what we see in tab-name iof web browser*@
+    ViewData["Title"] = "Booklist";
 }
+
+<h1 class="text-center">Book List Menu</h1>
+@*Here we work with bootstrap*@
+@*Bootstrap divide rows in 12 columns*@
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-10">
+        <h2 class="text-info">The book list</h2> @*text-info makes text blue*@
+    </div>
+    <div class="col-2">
+        <h2 class="btn btn-info  form-control">Insert New Book</h2>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Books.Count()> 0)
+            {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        <label asp-for="Books.FirstOrDefault().Name"></label>
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(m=>m.Books.FirstOrDefault().Author)*@
+                        <label asp-for="Books.FirstOrDefault().Author"></label>
+                    </th>
+                    <th>
+                        @* Space for buttons *@
+                    </th>
+                </tr>
+                @foreach (var item in Model.Books)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name) @*This is an HTML Helper*@
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Author) @*This is an HTML Helper*@
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                    <a class="btn btn-success btn-sm text-white">Edit</a>
+                </td>
+
+            </tr>         
+                }
+            </table>
+            }
+            else
+            {
+            <h3>No books available</h3>
+            }
+        </form>
+    </div>
+</div>
