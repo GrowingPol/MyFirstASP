@@ -15,9 +15,26 @@ namespace MiPrimerASP.Pages.BookList
         {
             _db = db;
         }
+
+        [BindProperty] //Helps to not create new object on Post handler
         public Book Book { get; set; }
+
         public void OnGet()
         {
         }
+
+        public async Task<IActionResult> OnPost()
+        {
+            if(ModelState.IsValid)
+            {
+                await _db.Book.AddAsync(Book);
+                await _db.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            else
+            {
+                return Page();
+            }
+        }
     }
-}
+} 
