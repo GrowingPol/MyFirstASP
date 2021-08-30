@@ -31,6 +31,9 @@
                         <label asp-for="Books.FirstOrDefault().Author"></label>
                     </th>
                     <th>
+                        <label asp-for="Books.FirstOrDefault().ISBN"></label>
+                    </th>
+                    <th>
                         @* Space for buttons *@
                     </th>
                 </tr>
@@ -42,6 +45,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(m => item.Author) @*This is an HTML Helper*@
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.ISBN) @*This is an HTML Helper*@
                 </td>
                 <td>
                     <button class="btn btn-danger btn-sm">Delete</button>
