@@ -23,7 +23,8 @@ namespace MiPrimerASP
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            //AddRazorRuntimeCompilation is used to see web changes in real time
+            services.AddRazorPages().AddRazorRuntimeCompilation();
         } 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
