@@ -24,5 +24,20 @@ namespace MiPrimerASP.Pages.BookList
         {
             Books = await _Db.Book.ToListAsync();
         }//Now is available in view display
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            var book = await _Db.Book.FindAsync(id);
+            if(book != null)
+            {
+                _Db.Book.Remove(book);
+                await _Db.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            else
+            {
+                return Page();
+            }
+        }
     }
 }
